@@ -1,0 +1,1681 @@
+@prefix : <http://www.cs.ccsu.edu/ParvathyKumar/University.owl#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.cs.ccsu.edu/ParvathyKumar/University.owl> .
+
+<http://www.cs.ccsu.edu/ParvathyKumar/University.owl> rdf:type owl:Ontology ;
+                                                       rdfs:comment """Name: Parvathy Kumar
+Course: CS575
+Domain: University
+Overview: This project contains major aspects of University domain including super class and subclass hierarchy.""" .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#has_Appear_In
+:has_Appear_In rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf owl:topObjectProperty ;
+               rdfs:domain :Student ;
+               rdfs:range :Examination .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#has_Attends
+:has_Attends rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf owl:topObjectProperty ;
+             owl:inverseOf :is_Attended_By ;
+             rdfs:domain :Campus_Events ;
+             rdfs:range :Person .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#has_Enrolled_In
+:has_Enrolled_In rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf owl:topObjectProperty ;
+                 rdfs:domain :Student ;
+                 rdfs:range :Programs .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#has_Grading
+:has_Grading rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf owl:topObjectProperty .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#has_Prerequisite
+:has_Prerequisite rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf owl:topObjectProperty ;
+                  owl:inverseOf :is_Prerequisite_Of ;
+                  rdfs:domain :Programs ;
+                  rdfs:range :Programs .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#is_Attended_By
+:is_Attended_By rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf owl:topObjectProperty ;
+                rdfs:domain :Campus_Events ;
+                rdfs:range :Person .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#is_Offered_By
+:is_Offered_By rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf owl:topObjectProperty ;
+               owl:inverseOf :offers ;
+               rdfs:domain :Programs ;
+               rdfs:range :Teaching_Faculty .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#is_Prerequisite_Of
+:is_Prerequisite_Of rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf owl:topObjectProperty ;
+                    rdfs:domain :Programs ;
+                    rdfs:range :Programs .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#is_Used_By
+:is_Used_By rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf owl:topObjectProperty ;
+            owl:inverseOf :uses ;
+            rdfs:domain :Library ,
+                        :Publications ;
+            rdfs:range :Programs .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#offers
+:offers rdf:type owl:ObjectProperty ;
+        rdfs:subPropertyOf owl:topObjectProperty ;
+        rdfs:domain :Teaching_Faculty ;
+        rdfs:range :Programs .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#studies
+:studies rdf:type owl:ObjectProperty ;
+         rdfs:subPropertyOf owl:topObjectProperty .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#teaches
+:teaches rdf:type owl:ObjectProperty ;
+         rdfs:subPropertyOf owl:topObjectProperty ;
+         rdfs:domain :Faculty_And_Staff ;
+         rdfs:range :Programs .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#uses
+:uses rdf:type owl:ObjectProperty ;
+      rdfs:subPropertyOf owl:topObjectProperty ;
+      rdfs:domain :Library ,
+                  :Publications ;
+      rdfs:range :Programs .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Email_Id
+:Email_Id rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf owl:topDataProperty ;
+          rdfs:domain :Person ;
+          rdfs:range xsd:string .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Event_Date
+:Event_Date rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf owl:topDataProperty ;
+            rdfs:domain :Campus_Events ;
+            rdfs:range xsd:string .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Event_Venue
+:Event_Venue rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf owl:topDataProperty ;
+             rdfs:domain :Campus_Events ;
+             rdfs:range xsd:string .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Gender
+:Gender rdf:type owl:DatatypeProperty .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#ISBN
+:ISBN rdf:type owl:DatatypeProperty ;
+      rdfs:subPropertyOf owl:topDataProperty ;
+      rdfs:domain :Books ,
+                  :Publications ;
+      rdfs:range xsd:string .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Qualification
+:Qualification rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf owl:topDataProperty ;
+               rdfs:domain :Person ;
+               rdfs:range xsd:string .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Year_Of_Admission
+:Year_Of_Admission rdf:type owl:DatatypeProperty ;
+                   rdfs:subPropertyOf owl:topDataProperty ;
+                   rdfs:domain :Student ;
+                   rdfs:range xsd:integer .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Year_Of_Graduation
+:Year_Of_Graduation rdf:type owl:DatatypeProperty ;
+                    rdfs:subPropertyOf owl:topDataProperty ;
+                    rdfs:domain :Student ;
+                    rdfs:range xsd:integer .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#address
+:address rdf:type owl:DatatypeProperty ;
+         rdfs:subPropertyOf owl:topDataProperty ;
+         rdfs:domain :Person ;
+         rdfs:range xsd:string .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#age
+:age rdf:type owl:DatatypeProperty ;
+     rdfs:subPropertyOf owl:topDataProperty ;
+     rdfs:domain :Person ;
+     rdfs:range xsd:integer .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#author
+:author rdf:type owl:DatatypeProperty ;
+        rdfs:subPropertyOf owl:topDataProperty ;
+        rdfs:domain :Books ,
+                    :Publications ;
+        rdfs:range xsd:string .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#first_Name
+:first_Name rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf owl:topDataProperty ;
+            rdfs:domain :Person ;
+            rdfs:range xsd:string .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#last_Name
+:last_Name rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf owl:topDataProperty ;
+           rdfs:domain :Person ;
+           rdfs:range xsd:string .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#max_Score
+:max_Score rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf owl:topDataProperty ;
+           rdfs:domain :Examination ;
+           rdfs:range xsd:integer .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#passing_Score
+:passing_Score rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf owl:topDataProperty ;
+               rdfs:domain :Examination ;
+               rdfs:range xsd:integer .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#phone
+:phone rdf:type owl:DatatypeProperty ;
+       rdfs:subPropertyOf owl:topDataProperty ;
+       rdfs:domain :Person ;
+       rdfs:range xsd:string .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#staff_Id
+:staff_Id rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf owl:topDataProperty ;
+          rdfs:domain :Person ;
+          rdfs:range xsd:integer .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#student_Id
+:student_Id rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf owl:topDataProperty ;
+            rdfs:domain :Person ;
+            rdfs:range xsd:integer .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#title
+:title rdf:type owl:DatatypeProperty ;
+       rdfs:subPropertyOf owl:topDataProperty ;
+       rdfs:domain :Books ,
+                   :Publications ;
+       rdfs:range xsd:string .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Accounting
+:Accounting rdf:type owl:Class ;
+            rdfs:subClassOf :Undergraduate ;
+            owl:disjointWith :Biochemistry ,
+                             :English ,
+                             :Mathematical_Science .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Adjunct_Faculty
+:Adjunct_Faculty rdf:type owl:Class ;
+                 rdfs:subClassOf :Teaching_Faculty .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Admission
+:Admission rdf:type owl:Class ;
+           rdfs:subClassOf :Departments .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Biochemistry
+:Biochemistry rdf:type owl:Class ;
+              rdfs:subClassOf :Undergraduate ;
+              owl:disjointWith :English ,
+                               :Mathematical_Science .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Books
+:Books rdf:type owl:Class ;
+       rdfs:subClassOf :Library .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#CCSU
+:CCSU rdf:type owl:Class ;
+      rdfs:subClassOf :University .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Campus_Events
+:Campus_Events rdf:type owl:Class ;
+               rdfs:subClassOf :CCSU .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Club_Events
+:Club_Events rdf:type owl:Class ;
+             rdfs:subClassOf :Events_List .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Computer_Information_Technology
+:Computer_Information_Technology rdf:type owl:Class ;
+                                 rdfs:subClassOf :MastersDegreeProgram .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Computer_Science
+:Computer_Science rdf:type owl:Class ;
+                  rdfs:subClassOf :Computer_Information_Technology ;
+                  owl:disjointWith :Networking_And_Telecommunications_Technology .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Conference_Event
+:Conference_Event rdf:type owl:Class ;
+                  rdfs:subClassOf :Events_List .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Construction_Management
+:Construction_Management rdf:type owl:Class ;
+                         rdfs:subClassOf :Official_Certificate_Programs ;
+                         owl:disjointWith :Pre_Health_Studies ,
+                                          :Tesol .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Courses
+:Courses rdf:type owl:Class ;
+         rdfs:subClassOf :Programs .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Data_Mining
+:Data_Mining rdf:type owl:Class ;
+             rdfs:subClassOf :MastersDegreeProgram .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Departments
+:Departments rdf:type owl:Class ;
+             rdfs:subClassOf :CCSU .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Doctoral_Degree_Programs
+:Doctoral_Degree_Programs rdf:type owl:Class ;
+                          rdfs:subClassOf :Graduate ;
+                          owl:disjointWith :MastersDegreeProgram ,
+                                           :Official_Certificate_Programs .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Doctorate_Of_Nurse_Anesthesia
+:Doctorate_Of_Nurse_Anesthesia rdf:type owl:Class ;
+                               rdfs:subClassOf :Doctoral_Degree_Programs ;
+                               owl:disjointWith :Educational_Leadership .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Documents
+:Documents rdf:type owl:Class ;
+           rdfs:subClassOf :Library .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Educational_Leadership
+:Educational_Leadership rdf:type owl:Class ;
+                        rdfs:subClassOf :Doctoral_Degree_Programs .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#English
+:English rdf:type owl:Class ;
+         rdfs:subClassOf :Undergraduate ;
+         owl:disjointWith :Mathematical_Science .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Evening_Events
+:Evening_Events rdf:type owl:Class ;
+                rdfs:subClassOf :Events_List ;
+                owl:disjointWith :Morning_Events ,
+                                 :Noon_Events .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Events_List
+:Events_List rdf:type owl:Class ;
+             rdfs:subClassOf :Campus_Events .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Examination
+:Examination rdf:type owl:Class ;
+             owl:equivalentClass [ rdf:type owl:Restriction ;
+                                   owl:onProperty :has_Appear_In ;
+                                   owl:someValuesFrom :Examination
+                                 ] ;
+             rdfs:subClassOf :CCSU .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Faculty_And_Staff
+:Faculty_And_Staff rdf:type owl:Class ;
+                   rdfs:subClassOf :Person .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Final
+:Final rdf:type owl:Class ;
+       rdfs:subClassOf :Examination .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Fulltime_Faculty
+:Fulltime_Faculty rdf:type owl:Class ;
+                  rdfs:subClassOf :Teaching_Faculty .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Good_Morning_Juliet_Event
+:Good_Morning_Juliet_Event rdf:type owl:Class ;
+                           rdfs:subClassOf :Events_List .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Grading_System
+:Grading_System rdf:type owl:Class ;
+                rdfs:subClassOf :Registrar .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Graduate
+:Graduate rdf:type owl:Class ;
+          rdfs:subClassOf :Programs ;
+          owl:disjointWith :Undergraduate .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Immigration
+:Immigration rdf:type owl:Class ;
+             rdfs:subClassOf :Departments .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Instrumental_Ensemble_Event
+:Instrumental_Ensemble_Event rdf:type owl:Class ;
+                             rdfs:subClassOf :Events_List .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Library
+:Library rdf:type owl:Class ;
+         rdfs:subClassOf :Departments .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#MastersDegreeProgram
+:MastersDegreeProgram rdf:type owl:Class ;
+                      rdfs:subClassOf :Graduate ;
+                      owl:disjointWith :Official_Certificate_Programs .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Mathematical_Science
+:Mathematical_Science rdf:type owl:Class ;
+                      rdfs:subClassOf :Undergraduate .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Midterm
+:Midterm rdf:type owl:Class ;
+         rdfs:subClassOf :Examination .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Morning_Events
+:Morning_Events rdf:type owl:Class ;
+                rdfs:subClassOf :Events_List ;
+                owl:disjointWith :Noon_Events .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Networking_And_Telecommunications_Technology
+:Networking_And_Telecommunications_Technology rdf:type owl:Class ;
+                                              rdfs:subClassOf :Computer_Information_Technology .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Non_Teaching_Faculty
+:Non_Teaching_Faculty rdf:type owl:Class ;
+                      rdfs:subClassOf :Faculty_And_Staff ;
+                      owl:disjointWith :Teaching_Faculty .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Noon_Events
+:Noon_Events rdf:type owl:Class ;
+             rdfs:subClassOf :Events_List .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Official_Certificate_Programs
+:Official_Certificate_Programs rdf:type owl:Class ;
+                               rdfs:subClassOf :Graduate .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Person
+:Person rdf:type owl:Class ;
+        rdfs:subClassOf :CCSU .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Pre_Health_Studies
+:Pre_Health_Studies rdf:type owl:Class ;
+                    rdfs:subClassOf :Official_Certificate_Programs ;
+                    owl:disjointWith :Tesol .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Programs
+:Programs rdf:type owl:Class ;
+          rdfs:subClassOf :CCSU .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Publications
+:Publications rdf:type owl:Class ;
+              rdfs:subClassOf :Programs .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Quizz
+:Quizz rdf:type owl:Class ;
+       rdfs:subClassOf :Examination .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Registrar
+:Registrar rdf:type owl:Class ;
+           rdfs:subClassOf :Departments .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Software_Engineering
+:Software_Engineering rdf:type owl:Class ;
+                      rdfs:subClassOf :MastersDegreeProgram .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Student
+:Student rdf:type owl:Class ;
+         owl:equivalentClass [ rdf:type owl:Restriction ;
+                               owl:onProperty :has_Enrolled_In ;
+                               owl:someValuesFrom :Courses
+                             ] ;
+         rdfs:subClassOf :Person .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Teaching_Faculty
+:Teaching_Faculty rdf:type owl:Class ;
+                  owl:equivalentClass [ rdf:type owl:Restriction ;
+                                        owl:onProperty :teaches ;
+                                        owl:someValuesFrom :Courses
+                                      ] ;
+                  rdfs:subClassOf :Faculty_And_Staff .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Tesol
+:Tesol rdf:type owl:Class ;
+       rdfs:subClassOf :Official_Certificate_Programs .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Undergraduate
+:Undergraduate rdf:type owl:Class ;
+               rdfs:subClassOf :Programs .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#University
+:University rdf:type owl:Class .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#AC_300
+:AC_300 rdf:type owl:NamedIndividual ,
+                 :Accounting ,
+                 :Courses ;
+        :is_Prerequisite_Of :AC_407 ,
+                            :AC_490 ;
+        :title "Intermediate Accounting I" .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#AC_407
+:AC_407 rdf:type owl:NamedIndividual ,
+                 :Accounting ,
+                 :Courses ;
+        :has_Prerequisite :AC_300 ;
+        :is_Offered_By :Lecture4 ;
+        :is_Prerequisite_Of :AC_490 ;
+        :uses :Accounting ;
+        :title "Advanced Accounting" .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#AC_490
+:AC_490 rdf:type owl:NamedIndividual ,
+                 :Accounting ,
+                 :Courses ;
+        :has_Prerequisite :AC_300 ,
+                          :AC_407 ;
+        :is_Offered_By :Lecture4 ;
+        :uses :Accounting_Theory ;
+        :title "Current Topics in Accounting" .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#A_Superior
+:A_Superior rdf:type owl:NamedIndividual ,
+                     :Grading_System .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Accounting
+:Accounting rdf:type owl:NamedIndividual ,
+                     :Books ;
+            :is_Used_By :AC_407 ;
+            :author "Joe B.Hoyle" ;
+            :title "Advanced Accounting" .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Accounting_Theory
+:Accounting_Theory rdf:type owl:NamedIndividual ,
+                            :Publications ;
+                   :is_Used_By :AC_490 ;
+                   :author "Kimberly Ferlauto" ;
+                   :title "Contemporary Issues In Accounting" .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Adjunct_Lecture1
+:Adjunct_Lecture1 rdf:type owl:NamedIndividual ,
+                           :Adjunct_Faculty ,
+                           :Teaching_Faculty ;
+                  :teaches :CET_569 ,
+                           :CET_594 ,
+                           :CET_596 ,
+                           :CS_595 ,
+                           :DATA_513 ,
+                           :DATA_531 ,
+                           :DATA_551 ;
+                  :Email_Id "mariahernandez@my.ccsu.edu" ;
+                  :Gender "Female" ;
+                  :Qualification "PhD" ;
+                  :address "590 Asylum Ave., Hartford, CT" ;
+                  :first_Name "Maria" ;
+                  :last_Name "Hernandez" ;
+                  :phone "827-293-1083" .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Adjunct_Lecture2
+:Adjunct_Lecture2 rdf:type owl:NamedIndividual ,
+                           :Adjunct_Faculty ,
+                           :Teaching_Faculty ;
+                  :teaches :ENG_211 ,
+                           :ENG_298 ,
+                           :ENG_398 ,
+                           :EPS_700 ,
+                           :FIN_300 ;
+                  :Email_Id "davidsmith@my.ccsu.edu" ;
+                  :Gender "Male" ;
+                  :Qualification "PhD" ;
+                  :address "550 Silas Deane Ave., Manchester, CT" ;
+                  :first_Name "David" ;
+                  :last_Name "Smith" ;
+                  :phone "847-239-2938" .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Adjunct_Lecture3
+:Adjunct_Lecture3 rdf:type owl:NamedIndividual ,
+                           :Adjunct_Faculty ,
+                           :Teaching_Faculty ;
+                  :teaches :CET_501 ,
+                           :CET_569 ,
+                           :CET_596 ,
+                           :CS_502 ,
+                           :CS_530 ,
+                           :CS_575 ;
+                  :Email_Id "jianchang@my.ccsu.edu" ;
+                  :Gender "Female" ;
+                  :Qualification "PhD" ;
+                  :address "734 Capitol Ave., Springfield, MA" ;
+                  :first_Name "Jian" ;
+                  :last_Name "Chang" ;
+                  :phone "837-198-2938" .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#April_Is_For_Ana
+:April_Is_For_Ana rdf:type owl:NamedIndividual ,
+                           :Evening_Events ;
+                  :is_Attended_By :Student1 ,
+                                  :Student10 ,
+                                  :Student2 ,
+                                  :Student3 ,
+                                  :Student4 ,
+                                  :Student6 ,
+                                  :Student7 .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Artificial_Intelligence
+:Artificial_Intelligence rdf:type owl:NamedIndividual ,
+                                  :Books ;
+                         :is_Used_By :CS_570 ;
+                         :ISBN "ISBN_56234152" ;
+                         :author "Peter Norvig" ;
+                         :title "Artificial Intelligence" .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#BIO_725
+:BIO_725 rdf:type owl:NamedIndividual ,
+                  :Courses ,
+                  :Doctorate_Of_Nurse_Anesthesia ;
+         :has_Enrolled_In :BIO_739 ;
+         :is_Offered_By :Lecture5 ;
+         :is_Prerequisite_Of :BIO_739 ,
+                             :BIO_742 ;
+         :title "Bioethics in Nurse Anesthesia" .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#BIO_739
+:BIO_739 rdf:type owl:NamedIndividual ,
+                  :Courses ,
+                  :Doctorate_Of_Nurse_Anesthesia ;
+         :has_Prerequisite :BIO_725 ;
+         :is_Offered_By :Lecture5 ;
+         :uses :Pharmacology ;
+         :title "Advanced Topics in Pharmacology" .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#BIO_742
+:BIO_742 rdf:type owl:NamedIndividual ,
+                  :Courses ,
+                  :Doctorate_Of_Nurse_Anesthesia ;
+         :has_Prerequisite :BIO_725 ;
+         :is_Offered_By :Lecture5 ;
+         :title "Advanced topics in Nurse Anesthesia" .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#B_Above_Average
+:B_Above_Average rdf:type owl:NamedIndividual ,
+                          :Grading_System .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#CET_501
+:CET_501 rdf:type owl:NamedIndividual ,
+                  :Courses ,
+                  :Networking_And_Telecommunications_Technology ;
+         :is_Offered_By :Adjunct_Lecture3 ,
+                        :Lecture2 ;
+         :is_Prerequisite_Of :CET_569 ,
+                             :CET_594 ,
+                             :CET_596 ,
+                             :CS_501 ,
+                             :CS_502 ;
+         :uses :Networking ;
+         :title "Applied Networking Technology I" .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#CET_569
+:CET_569 rdf:type owl:NamedIndividual ,
+                  :Courses ,
+                  :Networking_And_Telecommunications_Technology ;
+         :has_Prerequisite :CET_501 ;
+         :is_Offered_By :Adjunct_Lecture1 ,
+                        :Adjunct_Lecture3 ,
+                        :Lecture2 ,
+                        :Lecture3 ;
+         :title "Network Security Management" .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#CET_594
+:CET_594 rdf:type owl:NamedIndividual ,
+                  :Courses ,
+                  :Networking_And_Telecommunications_Technology ;
+         :has_Prerequisite :CET_501 ;
+         :is_Offered_By :Adjunct_Lecture1 ,
+                        :Lecture2 ;
+         :title "Research Design" .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#CET_596
+:CET_596 rdf:type owl:NamedIndividual ,
+                  :Courses ,
+                  :Networking_And_Telecommunications_Technology ;
+         :has_Prerequisite :CET_501 ;
+         :is_Offered_By :Adjunct_Lecture1 ,
+                        :Lecture2 ,
+                        :Lecture3 ;
+         :title "Technological Problems and Issues" .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#CHEM_210
+:CHEM_210 rdf:type owl:NamedIndividual ,
+                   :Biochemistry ,
+                   :Courses ;
+          :is_Offered_By :Lecture5 ;
+          :is_Prerequisite_Of :CHEM_320 ;
+          :title "Foundations of Organic Chemistry" .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#CHEM_260
+:CHEM_260 rdf:type owl:NamedIndividual ,
+                   :Biochemistry ,
+                   :Courses ;
+          :is_Offered_By :Lecture5 ;
+          :is_Prerequisite_Of :CHEM_320 ;
+          :title "Foundations of Inorganic Chemistry" .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#CHEM_320
+:CHEM_320 rdf:type owl:NamedIndividual ,
+                   :Biochemistry ,
+                   :Courses ;
+          :has_Prerequisite :CHEM_210 ,
+                            :CHEM_260 ;
+          :is_Offered_By :Lecture5 ;
+          :uses :Chemistry ;
+          :title "Biophysical Chemistry" .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#CS_260
+:CS_260 rdf:type owl:NamedIndividual .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#CS_320
+:CS_320 rdf:type owl:NamedIndividual .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#CS_407
+:CS_407 rdf:type owl:NamedIndividual ,
+                 :Computer_Science ,
+                 :Courses ;
+        :has_Prerequisite :CS_501 ,
+                          :CS_502 ;
+        :is_Offered_By :Lecture1 ;
+        :uses :Semantics ;
+        :title "Semnatics Web Technology" .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#CS_500
+:CS_500 rdf:type owl:NamedIndividual ,
+                 :Computer_Science ,
+                 :Courses ;
+        :is_Offered_By :Lecture1 ;
+        :is_Prerequisite_Of :CS_501 ,
+                            :CS_502 ;
+        :title "Computer Science for Computer Information Technology" .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#CS_501
+:CS_501 rdf:type owl:NamedIndividual ,
+                 :Computer_Science ,
+                 :Courses ;
+        :has_Prerequisite :CS_500 ;
+        :is_Offered_By :Lecture1 ;
+        :is_Prerequisite_Of :CS_407 ,
+                            :CS_560 ,
+                            :CS_570 ,
+                            :CS_575 ,
+                            :CS_595 ;
+        :uses :Data_Structures_And_Algorithms ;
+        :title "Foundations of Computer Science" .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#CS_502
+:CS_502 rdf:type owl:NamedIndividual ,
+                 :Computer_Science ,
+                 :Courses ;
+        :has_Prerequisite :CET_501 ,
+                          :CS_500 ;
+        :is_Offered_By :Adjunct_Lecture3 ,
+                       :Lecture3 ;
+        :uses :Computer_Architecture ;
+        :title "Computing and Communications Technology" .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#CS_530
+:CS_530 rdf:type owl:NamedIndividual ,
+                 :Computer_Science ,
+                 :Courses ;
+        :has_Prerequisite :CS_501 ,
+                          :CS_502 ,
+                          :CS_560 ;
+        :is_Offered_By :Adjunct_Lecture3 ,
+                       :Lecture3 ;
+        :title "Advanced Software Engineering" .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#CS_560
+:CS_560 rdf:type owl:NamedIndividual ,
+                 :Computer_Science ,
+                 :Courses ;
+        :has_Prerequisite :CS_501 ,
+                          :CS_502 ;
+        :is_Offered_By :Lecture3 ;
+        :title "Topics in Software Engineering" .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#CS_570
+:CS_570 rdf:type owl:NamedIndividual ,
+                 :Computer_Science ,
+                 :Courses ;
+        :has_Prerequisite :CS_501 ,
+                          :CS_502 ;
+        :is_Offered_By :Lecture1 ;
+        :uses :Artificial_Intelligence ;
+        :title "Topics in Artificial Intelligence" .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#CS_575
+:CS_575 rdf:type owl:NamedIndividual ,
+                 :Computer_Science ,
+                 :Courses ;
+        :has_Prerequisite :CS_501 ,
+                          :CS_502 ;
+        :is_Offered_By :Adjunct_Lecture3 ,
+                       :Lecture1 ;
+        :title "Linked Data Engineering" .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#CS_595
+:CS_595 rdf:type owl:NamedIndividual ,
+                 :Computer_Science ,
+                 :Courses ;
+        :has_Prerequisite :CS_501 ,
+                          :CS_502 ;
+        :is_Offered_By :Adjunct_Lecture1 ;
+        :title "Capstone in Software Engineering" .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#CS_Club_Event
+:CS_Club_Event rdf:type owl:NamedIndividual ,
+                        :Club_Events ;
+               :is_Attended_By :Student1 ,
+                               :Student10 ,
+                               :Student4 ,
+                               :Student5 ,
+                               :Student6 ,
+                               :Student7 ,
+                               :Student9 .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#C_Average
+:C_Average rdf:type owl:NamedIndividual ,
+                    :Grading_System .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Chemistry
+:Chemistry rdf:type owl:NamedIndividual ,
+                    :Books ;
+           :is_Used_By :CHEM_320 ;
+           :ISBN "ISBN: 978-1-4612-7943-3" ;
+           :author "James P.Allen" ;
+           :title "Modern Biophysical Chemistry" .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Computer_Architecture
+:Computer_Architecture rdf:type owl:NamedIndividual ,
+                                :Publications ;
+                       :is_Used_By :CS_502 ;
+                       :ISBN "978-0-12-407726-3" ;
+                       :author "David A.Patterson" ;
+                       :title "Computer Organization And Design" .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#DATA_513
+:DATA_513 rdf:type owl:NamedIndividual ,
+                   :Courses ,
+                   :Data_Mining ;
+          :is_Offered_By :Adjunct_Lecture1 ;
+          :is_Prerequisite_Of :DATA_551 ;
+          :title "Predictive Analytics: Classification" .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#DATA_531
+:DATA_531 rdf:type owl:NamedIndividual ,
+                   :Courses ,
+                   :Data_Mining ;
+          :is_Offered_By :Adjunct_Lecture1 ;
+          :title "Text Analytics with Information Retrieval" .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#DATA_551
+:DATA_551 rdf:type owl:NamedIndividual ,
+                   :Courses ,
+                   :Data_Mining ;
+          :has_Prerequisite :DATA_513 ;
+          :is_Offered_By :Adjunct_Lecture1 ;
+          :title "Predictive Modeling for Insurance Data" .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#D_Passing_Below_Average
+:D_Passing_Below_Average rdf:type owl:NamedIndividual ,
+                                  :Grading_System .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Data_Structures_And_Algorithms
+:Data_Structures_And_Algorithms rdf:type owl:NamedIndividual ,
+                                         :Publications ;
+                                :is_Used_By :CS_501 ;
+                                :ISBN "0-672-32453-9" ;
+                                :author "Robert Lafore" ;
+                                :title "Data Structures And Algorithms in Java" .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#EDL_611
+:EDL_611 rdf:type owl:NamedIndividual ,
+                  :Courses ,
+                  :Educational_Leadership ;
+         :is_Prerequisite_Of :EDL_721 ;
+         :title "School Leadership II" .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#EDL_721
+:EDL_721 rdf:type owl:NamedIndividual ,
+                  :Courses ,
+                  :Educational_Leadership ;
+         :has_Prerequisite :EDL_611 ;
+         :title "Administration and Ethics in Higher Education" .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#ENG_211
+:ENG_211 rdf:type owl:NamedIndividual ,
+                  :Courses ,
+                  :English ;
+         :is_Offered_By :Adjunct_Lecture2 ;
+         :is_Prerequisite_Of :ENG_398 ;
+         :title "Survey of American Literature: Civil War to the Present" .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#ENG_298
+:ENG_298 rdf:type owl:NamedIndividual ,
+                  :Courses ,
+                  :English ;
+         :is_Offered_By :Adjunct_Lecture2 ;
+         :title "Introduction to Literary Studies" .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#ENG_398
+:ENG_398 rdf:type owl:NamedIndividual ,
+                  :Courses ,
+                  :English ;
+         :has_Prerequisite :ENG_211 ;
+         :is_Offered_By :Adjunct_Lecture2 ;
+         :title "Topics in Literary Theory and Research" .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#EPS_700
+:EPS_700 rdf:type owl:NamedIndividual ,
+                  :Courses ,
+                  :Educational_Leadership ;
+         :is_Offered_By :Adjunct_Lecture2 ;
+         :title "The Purposes of Education in America" .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Employee1
+:Employee1 rdf:type owl:NamedIndividual ,
+                    :Non_Teaching_Faculty ,
+                    :Registrar ;
+           :Email_Id "mansonrobert@my.ccsu.edu" ;
+           :Gender "Male" ;
+           :Qualification "MBA" ;
+           :address "876 Farmington Ave., Avon, CT." ;
+           :first_Name "Manson" ;
+           :last_Name "Robert" ;
+           :staff_Id 92376521 .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Employee2
+:Employee2 rdf:type owl:NamedIndividual ,
+                    :Admission ,
+                    :Non_Teaching_Faculty ;
+           :Email_Id "lukeaven@my.ccsu.edu" ;
+           :Gender "Male" ;
+           :Qualification "MBA" ;
+           :address "273 East Woods, Bloomfield, CT." ;
+           :first_Name "Luke" ;
+           :last_Name "Evan" ;
+           :staff_Id 93862345 .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Employee3
+:Employee3 rdf:type owl:NamedIndividual ,
+                    :Admission ,
+                    :Non_Teaching_Faculty ;
+           :Email_Id "danielandrew@my.ccsu.edu" ;
+           :Gender "Male" ;
+           :Qualification "MBA" ;
+           :address "834 Burdside Ave., Bloomfield, CT" ;
+           :first_Name "Daniel" ;
+           :last_Name "Andrew" ;
+           :phone "938-274-2845" ;
+           :staff_Id 92643026 .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#FIN_300
+:FIN_300 rdf:type owl:NamedIndividual ,
+                  :Accounting ,
+                  :Courses ;
+         :is_Offered_By :Adjunct_Lecture2 ;
+         :title "Personal Finance" .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#F_Failure
+:F_Failure rdf:type owl:NamedIndividual ,
+                    :Grading_System .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Fall_2021_Finals
+:Fall_2021_Finals rdf:type owl:NamedIndividual ,
+                           :Final .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Fall_2021_Midterm
+:Fall_2021_Midterm rdf:type owl:NamedIndividual ,
+                            :Midterm .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Fall_2021_Quizzes
+:Fall_2021_Quizzes rdf:type owl:NamedIndividual ,
+                            :Quizz .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Java_Software_Solutions
+:Java_Software_Solutions rdf:type owl:NamedIndividual ,
+                                  :Books ;
+                         :is_Offered_By :Lecture1 ;
+                         :is_Used_By :CS_500 ;
+                         :ISBN "978-0-13-446202-8" ;
+                         :author "Lewis Loftus" ;
+                         :title "Foundations of Program Design" .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Lecture1
+:Lecture1 rdf:type owl:NamedIndividual ,
+                   :Fulltime_Faculty ,
+                   :Teaching_Faculty ;
+          :teaches :CS_407 ,
+                   :CS_500 ,
+                   :CS_501 ,
+                   :CS_570 ,
+                   :CS_575 ;
+          :Email_Id "nelizlatareva@my.ccsu.edu" ;
+          :Gender "Female" ;
+          :Qualification "PhD" ;
+          :address "48 SnowBerry Lane, Farmington, CT." ;
+          :first_Name "Neli" ;
+          :last_Name "Zlatareva" ;
+          :phone "893-397-2635" ;
+          :staff_Id 97234243 .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Lecture2
+:Lecture2 rdf:type owl:NamedIndividual ,
+                   :Fulltime_Faculty ,
+                   :Teaching_Faculty ;
+          :teaches :CET_501 ,
+                   :CET_569 ,
+                   :CET_594 ,
+                   :CET_596 ;
+          :Email_Id "chadwilliams@my.ccsu.edu" ;
+          :Gender "Male" ;
+          :Qualification "PhD" ;
+          :address "456 Southwest Drive, Glastonbury, CT" ;
+          :first_Name "Chad" ;
+          :last_Name "Williams" ;
+          :phone "894-283-2084" ;
+          :staff_Id 96243016 .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Lecture3
+:Lecture3 rdf:type owl:NamedIndividual ,
+                   :Fulltime_Faculty ,
+                   :Teaching_Faculty ;
+          :teaches :CET_569 ,
+                   :CET_596 ,
+                   :CS_502 ,
+                   :CS_530 ,
+                   :CS_560 ;
+          :Email_Id "YusufAlbayram@my.ccsu.edu" ;
+          :Gender "Male" ;
+          :Qualification "PhD" ;
+          :address "499 Burnside Ave., Middletown, CT." ;
+          :first_Name "Yusuf" ;
+          :last_Name "Albayram" ;
+          :phone "847-302-3948" ;
+          :staff_Id 62830134 .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Lecture4
+:Lecture4 rdf:type owl:NamedIndividual ,
+                   :Fulltime_Faculty ,
+                   :Teaching_Faculty ;
+          :teaches :CS_500 ,
+                   :CS_570 ,
+                   :CS_575 ;
+          :Email_Id "StanKurkovsky@my.ccsu.edu" ;
+          :Gender "Female" ;
+          :Qualification "PhD" ;
+          :address "492 Columbus Blvd., Vernon, CT" ;
+          :first_Name "Stan" ;
+          :last_Name "Kurkovsky" ;
+          :phone "829-1000-291" ;
+          :staff_Id 69023810 .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Lecture5
+:Lecture5 rdf:type owl:NamedIndividual ,
+                   :Fulltime_Faculty ,
+                   :Teaching_Faculty ;
+          :teaches :BIO_725 ,
+                   :BIO_739 ,
+                   :BIO_742 ,
+                   :CHEM_210 ,
+                   :CHEM_260 ,
+                   :CHEM_320 ;
+          :Email_Id "ZdravkoMarkov@my.ccsu.edu" ;
+          :Gender "Female" ;
+          :Qualification "PhD" ;
+          :address "38 Seymour St., Hartford, CT" ;
+          :first_Name "Zdravko" ;
+          :last_Name "Markov" ;
+          :phone "829-1082-293" ;
+          :staff_Id 62829273 .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Librarian
+:Librarian rdf:type owl:NamedIndividual ,
+                    :Library .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Linear_Algebra
+:Linear_Algebra rdf:type owl:NamedIndividual ,
+                         :Books ;
+                :is_Used_By :MATH_228 ;
+                :ISBN "578-0-13-429202-8" ;
+                :author "Gilbert Strang" ;
+                :title "Linear Algebra And Probability" .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#MATH_152
+:MATH_152 rdf:type owl:NamedIndividual ,
+                   :Courses ,
+                   :Mathematical_Science ;
+          :is_Offered_By :Lecture4 ;
+          :is_Prerequisite_Of :MATH_218 ,
+                              :MATH_228 ;
+          :title "Calculus I" .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#MATH_218
+:MATH_218 rdf:type owl:NamedIndividual ,
+                   :Courses ,
+                   :Mathematical_Science ;
+          :has_Prerequisite :MATH_152 ;
+          :is_Offered_By :Lecture4 ;
+          :title "Discrete Math" .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#MATH_228
+:MATH_228 rdf:type owl:NamedIndividual ,
+                   :Courses ,
+                   :Mathematical_Science ;
+          :has_Prerequisite :MATH_152 ;
+          :is_Offered_By :Lecture4 ;
+          :uses :Linear_Algebra ;
+          :title "Introduction to Linear Algebra" .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Networking
+:Networking rdf:type owl:NamedIndividual ,
+                     :Books ;
+            :is_Used_By :CET_501 ;
+            :ISBN "978-0-13-446202-9" ;
+            :author "Mark A. Dye" ;
+            :title "Introductions to Networks" .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Pharmacology
+:Pharmacology rdf:type owl:NamedIndividual ,
+                       :Books ;
+              :is_Used_By :BIO_739 ;
+              :ISBN "2763-238-23623" ;
+              :author "Andrew M. Peterson and Virginia Poole Arcangelo" ;
+              :title "Pharmacotherapeutics for Advanced Practice: A Practical Approach" .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Semantics
+:Semantics rdf:type owl:NamedIndividual ,
+                    :Publications ;
+           :is_Used_By :CS_407 ;
+           :ISBN "978-1-4200-9050-5" ;
+           :author "Pascal Hitzler" ;
+           :title "Founadtions Of Semantic Web Technologies" .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Spring_2021_Car_Show
+:Spring_2021_Car_Show rdf:type owl:NamedIndividual ,
+                               :Noon_Events ;
+                      :is_Attended_By :Student1 ,
+                                      :Student3 ,
+                                      :Student5 ,
+                                      :Student7 ,
+                                      :Student9 .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Spring_2021_Finals
+:Spring_2021_Finals rdf:type owl:NamedIndividual ,
+                             :Final .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Spring_2021_Midterm
+:Spring_2021_Midterm rdf:type owl:NamedIndividual ,
+                              :Midterm .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Spring_2021_Quizzes
+:Spring_2021_Quizzes rdf:type owl:NamedIndividual ,
+                              :Quizz .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Spring_Concert
+:Spring_Concert rdf:type owl:NamedIndividual ,
+                         :Instrumental_Ensemble_Event ;
+                :is_Attended_By :Student1 ,
+                                :Student10 ,
+                                :Student11 ,
+                                :Student12 ,
+                                :Student3 ,
+                                :Student6 ,
+                                :Student7 ,
+                                :Student8 ,
+                                :Student9 .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Student1
+:Student1 rdf:type owl:NamedIndividual ,
+                   :Student ;
+          :has_Appear_In :Spring_2021_Finals ,
+                         :Spring_2021_Midterm ,
+                         :Spring_2021_Quizzes ;
+          :has_Attends :April_Is_For_Ana ,
+                       :CS_Club_Event ,
+                       :Spring_2021_Car_Show ,
+                       :Spring_Concert ;
+          :has_Enrolled_In :CS_500 ,
+                           :CS_530 ,
+                           :CS_570 ,
+                           :CS_575 ,
+                           :CS_595 ;
+          :has_Grading :A_Superior ;
+          :studies :CS_407 ,
+                   :CS_501 ,
+                   :CS_502 ;
+          :Email_Id "ParvathyKumar@my.ccsu.edu" ;
+          :Gender "Female" ;
+          :Year_Of_Admission 2019 ;
+          :Year_Of_Graduation 2021 ;
+          :age 27 ;
+          :first_Name "Parvathy" ;
+          :last_Name "Kumar" ;
+          :phone "860-461-2023" ;
+          :student_Id 27635289 ;
+          :title "600 Asylum Ave., Hartford,CT" .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Student10
+:Student10 rdf:type owl:NamedIndividual ,
+                    :Student ;
+           :has_Appear_In :Summer_2021_Finals ;
+           :has_Attends :April_Is_For_Ana ,
+                        :CS_Club_Event ,
+                        :Spring_Concert ;
+           :has_Enrolled_In :CET_569 ,
+                            :CS_501 ,
+                            :CS_502 ,
+                            :CS_530 ,
+                            :CS_575 ,
+                            :CS_595 ;
+           :has_Grading :B_Above_Average ;
+           :Email_Id "rameshravi@my.ccsu.edu" ;
+           :Gender "Male" ;
+           :Year_Of_Admission 2019 ;
+           :Year_Of_Graduation 2021 ;
+           :address "376 Farmington Ave., Simsbury, CT" ;
+           :age 24 ;
+           :first_Name "Ramesh" ;
+           :last_Name "Ravi" ;
+           :phone "829-298-3082" ;
+           :student_Id 20383619 .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Student11
+:Student11 rdf:type owl:NamedIndividual ,
+                    :Student ;
+           :has_Appear_In :Fall_2021_Finals ,
+                          :Summer_2021_Midterm ,
+                          :Summer_2021_Quizzes ;
+           :has_Attends :CS_Club_Event ,
+                        :Spring_Concert ;
+           :has_Enrolled_In :ENG_298 ,
+                            :ENG_398 ;
+           :has_Grading :C_Average ;
+           :Email_Id "priyankachenga@my.ccsu.edu" ;
+           :Gender "Female" ;
+           :Year_Of_Admission 2018 ;
+           :Year_Of_Graduation 2021 ;
+           :address "265 Westdrive, Middlefield, CT" ;
+           :age 29 ;
+           :first_Name "Priyanka" ;
+           :last_Name "Chenga" ;
+           :phone "345-293-2038" ;
+           :student_Id 29046254 .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Student12
+:Student12 rdf:type owl:NamedIndividual ,
+                    :Student ;
+           :has_Appear_In :Spring_2021_Finals ,
+                          :Spring_2021_Midterm ,
+                          :Spring_2021_Quizzes ;
+           :has_Attends :CS_Club_Event ,
+                        :Spring_Concert ;
+           :has_Enrolled_In :CET_569 ,
+                            :CS_502 ,
+                            :CS_530 ,
+                            :CS_575 ,
+                            :CS_595 ;
+           :has_Grading :D_Passing_Below_Average ;
+           :Email_Id "teenarajesh@my.ccsu.edu" ;
+           :Gender "Male" ;
+           :Year_Of_Admission 2018 ;
+           :Year_Of_Graduation 2021 ;
+           :address "038, NorthWest Drive, Springfield, MA" ;
+           :age 27 ;
+           :first_Name "Teena" ;
+           :last_Name "Rajesh" ;
+           :phone "241-273-4082" ;
+           :student_Id 20764189 .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Student13
+:Student13 rdf:type owl:NamedIndividual ,
+                    :Student ;
+           :has_Appear_In :Summer_2021_Finals ,
+                          :Summer_2021_Midterm ,
+                          :Summer_2021_Quizzes ;
+           :has_Attends :April_Is_For_Ana ,
+                        :Spring_2021_Car_Show ;
+           :has_Enrolled_In :CET_596 ,
+                            :CS_407 ,
+                            :CS_501 ,
+                            :CS_530 ,
+                            :CS_560 ;
+           :has_Grading :B_Above_Average ;
+           :Email_Id "nivijohn@my.ccsu.edu" ;
+           :Gender "Male" ;
+           :Year_Of_Admission 2017 ;
+           :Year_Of_Graduation 2021 ;
+           :address "635 Silasdeane Ave,. Hartford, CT" ;
+           :age 25 ;
+           :first_Name "Nivedha" ;
+           :last_Name "John" ;
+           :phone "298-174-3946" ;
+           :student_Id 27513093 .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Student2
+:Student2 rdf:type owl:NamedIndividual ,
+                   :Student ;
+          :has_Appear_In :Summer_2021_Finals ,
+                         :Summer_2021_Midterm ,
+                         :Summer_2021_Quizzes ;
+          :has_Attends :April_Is_For_Ana ,
+                       :CS_Club_Event ;
+          :has_Enrolled_In :CET_569 ,
+                           :CET_596 ,
+                           :CS_575 ;
+          :has_Grading :A_Superior ;
+          :studies :CS_500 ;
+          :Email_Id "malakumar@my.ccsu.edu" ;
+          :Gender "Female" ;
+          :Year_Of_Admission 2020 ;
+          :Year_Of_Graduation 2022 ;
+          :address "250 Main St., Hartford, CT" ;
+          :age 28 ;
+          :first_Name "Mala" ;
+          :last_Name "Kumar" ;
+          :phone "860-376-4863" ;
+          :student_Id 28936476 .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Student3
+:Student3 rdf:type owl:NamedIndividual ,
+                   :Student ;
+          :has_Appear_In :Fall_2021_Finals ;
+          :has_Attends :April_Is_For_Ana ,
+                       :CS_Club_Event ,
+                       :Spring_2021_Car_Show ,
+                       :Spring_Concert ;
+          :has_Enrolled_In :CET_594 ,
+                           :CS_560 ,
+                           :CS_595 ;
+          :has_Grading :A_Superior ;
+          :studies :CET_569 ,
+                   :CS_501 ;
+          :Email_Id "sunakshirajesh@my.ccsu.edu" ;
+          :Gender "Female" ;
+          :Year_Of_Admission 2017 ;
+          :Year_Of_Graduation 2021 ;
+          :address "367 North Main St., Milford, CT" ;
+          :age 32 ;
+          :first_Name "Sunakshi" ;
+          :last_Name "Rajesh" ;
+          :phone "860-763-2836" ;
+          :student_Id 23568768 .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Student4
+:Student4 rdf:type owl:NamedIndividual ,
+                   :Student ;
+          :has_Appear_In :Spring_2021_Finals ,
+                         :Spring_2021_Midterm ;
+          :has_Attends :April_Is_For_Ana ,
+                       :CS_Club_Event ;
+          :has_Enrolled_In :CS_560 ,
+                           :CS_575 ,
+                           :CS_595 ;
+          :has_Grading :A_Superior ;
+          :studies :CS_500 ;
+          :Email_Id "srilakshmidoma@my.ccsu.edu" ;
+          :Gender "Male" ;
+          :Year_Of_Admission 2017 ;
+          :Year_Of_Graduation 2021 ;
+          :address "589 West Drive, West Hartford, CT." ;
+          :age 27 ;
+          :first_Name "Srilakshmi" ;
+          :last_Name "Doma" ;
+          :phone "829-276-2146" ;
+          :student_Id 28401474 .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Student5
+:Student5 rdf:type owl:NamedIndividual ,
+                   :Student ;
+          :has_Appear_In :Spring_2021_Finals ,
+                         :Spring_2021_Midterm ;
+          :has_Attends :April_Is_For_Ana ,
+                       :CS_Club_Event ,
+                       :Spring_2021_Car_Show ;
+          :has_Enrolled_In :CET_596 ,
+                           :CS_570 ,
+                           :CS_595 ;
+          :has_Grading :A_Superior ;
+          :studies :CS_407 ,
+                   :CS_530 ,
+                   :CS_570 ;
+          :Email_Id "kanishrajesh@my.ccsu.edu" ;
+          :Gender "Female" ;
+          :Year_Of_Admission 2018 ;
+          :Year_Of_Graduation 2021 ;
+          :address "589 West Drive, West Hartford, CT." ;
+          :age 26 ;
+          :first_Name "Kanish" ;
+          :last_Name "Rajesh" ;
+          :phone "346-679-1238" ;
+          :student_Id 26803601 .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Student6
+:Student6 rdf:type owl:NamedIndividual ,
+                   :Student ;
+          :has_Appear_In :Spring_2021_Finals ,
+                         :Spring_2021_Midterm ,
+                         :Spring_2021_Quizzes ;
+          :has_Attends :April_Is_For_Ana ,
+                       :CS_Club_Event ,
+                       :Spring_Concert ;
+          :has_Enrolled_In :CS_502 ,
+                           :MATH_152 ,
+                           :MATH_218 ,
+                           :MATH_228 ;
+          :has_Grading :A_Superior ;
+          :studies :CS_407 ,
+                   :CS_501 ;
+          :Email_Id "appuyamuna@my.ccsu.edu" ;
+          :Gender "Male" ;
+          :Year_Of_Admission 2018 ;
+          :Year_Of_Graduation 2021 ;
+          :address "458 Albaney Ave., Avon, CT" ;
+          :age 23 ;
+          :first_Name "Appu" ;
+          :last_Name "Yamuna" ;
+          :phone "863-293-0182" ;
+          :student_Id 20471956 .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Student7
+:Student7 rdf:type owl:NamedIndividual ,
+                   :Student ;
+          :has_Appear_In :Summer_2021_Finals ;
+          :has_Attends :April_Is_For_Ana ,
+                       :CS_Club_Event ,
+                       :Spring_2021_Car_Show ,
+                       :Spring_Concert ;
+          :has_Enrolled_In :ENG_298 ,
+                           :ENG_398 ;
+          :has_Grading :B_Above_Average ;
+          :studies :ENG_211 ;
+          :Gender "Male" ;
+          :Year_Of_Admission 2018 ;
+          :Year_Of_Graduation 2021 ;
+          :address "555 Weston St., East Hartford, CT." ;
+          :age 26 ;
+          :first_Name "Daniel" ;
+          :last_Name "Raj" ;
+          :phone "849-201-3984" ;
+          :student_Id 23081684 .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Student8
+:Student8 rdf:type owl:NamedIndividual ,
+                   :Student ;
+          :has_Appear_In :Fall_2021_Finals ,
+                         :Fall_2021_Midterm ;
+          :has_Attends :April_Is_For_Ana ,
+                       :Spring_Concert ;
+          :has_Enrolled_In :BIO_725 ,
+                           :BIO_739 ,
+                           :BIO_742 ;
+          :has_Grading :D_Passing_Below_Average ;
+          :Email_Id "padmakumar@my.ccsu.edu" ;
+          :Gender "Female" ;
+          :Year_Of_Admission 2020 ;
+          :Year_Of_Graduation 2022 ;
+          :address "212 Washington St., Stamford, CT" ;
+          :age 21 ;
+          :first_Name "Padma" ;
+          :last_Name "Kumar" ;
+          :phone "389-293-0234" ;
+          :student_Id 24361805 .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Student9
+:Student9 rdf:type owl:NamedIndividual ,
+                   :Student ;
+          :has_Attends :CS_Club_Event ,
+                       :Spring_Concert ;
+          :has_Enrolled_In :CS_260 ,
+                           :CS_320 ;
+          :has_Grading :C_Average ;
+          :Email_Id "adamjones@my.ccsu.edu" ;
+          :Gender "Male" ;
+          :Year_Of_Admission 2020 ;
+          :Year_Of_Graduation 2022 ;
+          :address "478 Maple Ave., New Haven, CT" ;
+          :age 23 ;
+          :first_Name "Adam" ;
+          :last_Name "Jones" ;
+          :phone "287-192-1098" ;
+          :student_Id 29401391 .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Student_Welfare_Conference
+:Student_Welfare_Conference rdf:type owl:NamedIndividual ,
+                                     :Conference_Event .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Summer_2021_Finals
+:Summer_2021_Finals rdf:type owl:NamedIndividual ,
+                             :Final .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Summer_2021_Midterm
+:Summer_2021_Midterm rdf:type owl:NamedIndividual ,
+                              :Midterm .
+
+
+###  http://www.cs.ccsu.edu/ParvathyKumar/University.owl#Summer_2021_Quizzes
+:Summer_2021_Quizzes rdf:type owl:NamedIndividual ,
+                              :Quizz .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Club_Events
+                :Conference_Event
+                :Good_Morning_Juliet_Event
+                :Instrumental_Ensemble_Event
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Computer_Information_Technology
+                :Data_Mining
+                :Software_Engineering
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Final
+                :Midterm
+                :Quizz
+              )
+] .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi

@@ -1,0 +1,185 @@
+When you run java code, Compulsory Apache Jena Fuseki is running
+
+Display course title from university ontology
+---------------------------------------
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+PREFIX owl: <http://www.w3.org/2002/07/owl#> 
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX test: <http://www.cs.ccsu.edu/ParvathyKumar/University.owl#> 
+ SELECT * WHERE {  
+    SERVICE <http://localhost:3030/UniversityOnto/sparql?timeout=2000> {  	
+      SELECT ?x ?ctitle  
+	  WHERE  
+	  { 
+		?x a test:Courses . 
+		?x test:title ?ctitle . 
+	  } 
+	} 
+}
+--------------------
+Display publications and its author and title with it used by.
+------------------
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX test: <http://www.cs.ccsu.edu/ParvathyKumar/University.owl#> 
+SELECT ?x ?author ?title ?y
+WHERE 
+{
+   ?x a test:Publications .
+   ?x test:author ?author .
+   ?x test:title ?title .
+   ?x test:is_Used_By ?y .
+}
+------------------
+Display First and Last name of Adjuct Faculty and show its teaching subject
+------------------
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX test: <http://www.cs.ccsu.edu/ParvathyKumar/University.owl#> 
+SELECT ?x ?fn ?ln ?y
+WHERE 
+{
+ ?x a test:Adjunct_Faculty .
+ ?x test:first_Name ?fn .
+ ?x test:last_Name ?ln .
+ ?x test:teaches ?y .
+ Filter(?fn = "David")
+}
+-------------------------
+Sample query for java
+-----------------
+PREFIX test: <http://www.cs.ccsu.edu/ParvathyKumar/University.owl#> 
+ SELECT * WHERE {  
+    SERVICE <http://localhost:3030/UniversityOnto/sparql?timeout=2000> {  	
+      // Put your sparql query here
+	} 
+}
+
+	
+------------------------------
+Display course and its title
+--------------------------------
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX test: <http://www.cs.ccsu.edu/ParvathyKumar/University.owl#>
+SELECT ?x ?cname ?ctitle
+WHERE
+{
+    ?x a test:Courses .
+    ?x test:title ?ctitle .
+}
+
+
+
+
+
+
+
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT ?subject ?object
+	WHERE { ?subject rdfs:subClassOf ?object }
+	
+---------------
+SELECT ?subject ?predicate ?object
+WHERE {
+  ?subject ?predicate ?object
+}
+LIMIT 25
+-------------
+
+
+
+package semanticweb;
+
+import org.apache.jena.query.* ;
+import org.apache.jena.rdf.model.ModelFactory ;
+
+public class Snippet {
+	public static void main(String[] args) {
+		String queryString = 
+	            "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+	            + "PREFIX owl: <http://www.w3.org/2002/07/owl#> 
+	            + "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+	            + "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+	            + "PREFIX test: <http://www.plantingspace.com/onto#> 
+	            + "SELECT * WHERE {  
+	            + "    SERVICE <http://localhost:3030/PSOnto/sparql?timeout=2000> {  	            
+	            + "SELECT ?x ?parkname ?name ?acre ?lati ?logi ?status ?pcode WHERE 
+	            + "{ 
+	            + " ?x a test:Park . 
+	            + " ?x test:Name ?parkname . 
+	            + "  ?x test:Acre ?acre . 
+	            + "  ?x test:Latitude ?lati . 
+	            + "  ?x test:Longitude ?logi . 
+	            + " ?x test:isSituatedIn ?y . 
+	            + " ?y test:Name ?name .  
+	            + " ?y test:PostalCode ?pcode . 
+	            + " ?x test:hasStatus ?z . 
+	            + "  ?z test:PSStatusValue  ?status . 
+	            + "FILTER regex(?status, \"popu\", \"i\")  
+	            + "FILTER regex(?parkname, \"pond\", \"i\")  
+	            + "}" +
+	            "    }" +
+	            "}" ;
+	        Query query = QueryFactory.create(queryString) ;
+	        try (QueryExecution qexec = QueryExecutionFactory.create(query, ModelFactory.createDefaultModel())) {
+	            ResultSet rs = qexec.execSelect() ;
+	            ResultSetFormatter.out(System.out, rs, query) ;
+	        }
+	}
+}
+-------------------
+Perfect code with Fuseki
+--------------------
+package semanticweb;
+
+import org.apache.jena.query.* ;
+//import org.apache.jena.rdf.model.ModelFactory ;
+
+public class Snippet {
+	public static void main(String[] args) {
+		System.out.println("It is my SPARQL query");
+		String serviceURI = "http://localhost:3030/UniversityOnto/sparql";
+		String queryString = 
+	            " PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\r\n"
+	            + "PREFIX owl: <http://www.w3.org/2002/07/owl#>\r\n"
+	            + "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\r\n"
+	            + "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\r\n"
+	            + "PREFIX test: <http://www.cs.ccsu.edu/ParvathyKumar/University.owl#> \r\n"
+	            + "SELECT ?x ?author ?title ?y\r\n"
+	            + "WHERE \r\n"
+	            + "{\r\n"
+	            + "   ?x a test:Publications .\r\n"
+	            + "   ?x test:author ?author .\r\n"
+	            + "   ?x test:title ?title .\r\n"
+	            + "   ?x test:is_Used_By ?y .\r\n"
+	            + "}" ;
+	        Query query = QueryFactory.create(queryString) ;
+	        
+	        //try (QueryExecution qexec = QueryExecutionFactory.create(query, ModelFactory.createDefaultModel())) {
+	        try (QueryExecution qexec = QueryExecutionFactory.sparqlService(serviceURI, query)){
+	            ResultSet rs = qexec.execSelect() ;
+	            ResultSetFormatter.out(System.out, rs, query) ;
+	        }
+	}
+}
+
+
+
+
+
+https://gist.github.com/thiloplanz/f2d279cfc0880327a197
+
+
+
