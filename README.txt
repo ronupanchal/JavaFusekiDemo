@@ -2,7 +2,7 @@ Step 1: First Install Java 16 from https://www.oracle.com/java/technologies/java
 
 Step 2: Download Apache Jena and Apache Jena Fuseki 
 https://jena.apache.org/download/
-
+How to install Apache Jena fuseki server https://youtu.be/3WTtKaIfqnk
 https://www.youtube.com/watch?v=iAtZ_JBUtbY
 
 Step 3:
